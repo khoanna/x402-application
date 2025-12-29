@@ -2,7 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
-const PORT = 4000;
+const PORT = 3001;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
@@ -14,6 +14,9 @@ app.use(
     credentials: true,
   })
 );
+app.get("/", (req, res) => {
+  res.json({ message: "Server is running!" });
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
