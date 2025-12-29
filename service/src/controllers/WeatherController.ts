@@ -3,11 +3,11 @@ import { mockWeatherData } from "../data/mock.ts";
 
 class WeatherController {
   
-  // GET /weather/current/:id
+  // GET /weather/current?id=
   async getCurrentWeather(req: express.Request, res: express.Response) {
-    const { id } = req.params;
+    const  id  = req.query.id as string;
     const cityData = mockWeatherData.find((item) => item.id === id);
-
+    
     if (!cityData) {
       res.status(404).json({ success: false, message: "City not found" });
       return;
@@ -21,9 +21,9 @@ class WeatherController {
     });
   }
 
-  // GET /weather/forecast/:id
+  // GET /weather/forecast?id=
   async getForecastWeather(req: express.Request, res: express.Response) {
-    const { id } = req.params;
+    const  id  = req.query.id as string;
     const cityData = mockWeatherData.find((item) => item.id === id);
 
     if (!cityData) {

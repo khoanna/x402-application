@@ -1,49 +1,25 @@
-import { WeatherData } from "../types/weather";
+import axios from 'axios';
+import { CurrentWeatherData } from "../types/weather";
+import { ForecastWeatherData } from "../types/weather";
 
-export const getWeather = async (location: string): Promise<WeatherData> => {
-  // This is a sample implementation.
-  // In a real application, you would call a weather API here.
-  
-  // Simulating an API call delay
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+const API_BASE_URL = 'http://localhost:3001'; // Backend URL
 
-  // Mock data
-  return {
-    success: true,
-    count: 1,
-    cities: [
-      {
-        city: location,
-        country: "US",
-        lat: 40.7128,
-        long: -74.0060,
-        timezone: "America/New_York",
-        id: "123456",
-      },
-    ],
-  };
+export const getCurrentWeather = async (location: string): Promise<CurrentWeatherData> => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/weather/current?id=${location}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching current weather:', error);
+    throw error;
+  }
 };
 
-export const getForecastedWeather = async (location: string): Promise<WeatherData> => {
-  // This is a sample implementation.
-  // In a real application, you would call a weather API here.
-  
-  // Simulating an API call delay
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  // Mock data
-  return {
-    success: true,
-    count: 1,
-    cities: [
-      {
-        city: location,
-        country: "US",
-        lat: 40.7128,
-        long: -74.0060,
-        timezone: "America/New_York",
-        id: "123456",
-      },
-    ],
-  };
-}
+export const getForecastedWeather = async (location: string): Promise<ForecastWeatherData> => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/weather/forecast?id=${location}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching forecasted weather:', error);
+    throw error;
+  }
+};

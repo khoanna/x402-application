@@ -1,15 +1,32 @@
-export interface WeatherCity {
-  city: string;
-  country: string;
-  lat: number;
-  long: number;
-  timezone: string;
-  id: string;
-}
-
-export interface WeatherData {
+export interface CurrentWeatherData {
   success: boolean;
-  count: number;
-  cities: WeatherCity[];
+  city: string;
+  country:string;
+  current: {
+    timestamp: string;
+    temp_c: number;
+    temp_f: number;
+    condition: string;
+    humidity: number;
+    wind_kph: number;
+    uv_index: number;
+    feels_like_c: number;
+  };
 }
 
+export interface ForecastWeatherData {
+  success: boolean;
+  city: string;
+  country:string;
+  forecast: {
+    timestamp: string;
+    temp_c: number;
+    temp_f: number;
+    condition: string;
+    humidity: number;
+    wind_kph: number;
+    uv_index: number;
+    feels_like_c: number;
+  };
+}
+  

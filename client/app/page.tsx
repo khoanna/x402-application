@@ -5,14 +5,14 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount, useSendTransaction, usePublicClient } from 'wagmi';
 import { parseEther } from 'viem';
 import { USDCBalance } from './components/USDCBalance';
-import { getWeather } from './services/user.service';
-import { WeatherData } from './types/weather';
+import { getCurrentWeather } from './services/user.service';
+import { CurrentWeatherData } from './types/weather';
 
 export default function Home() {
   const { address, isConnected, connector } = useAccount();
   const { sendTransactionAsync } = useSendTransaction();
   const publicClient = usePublicClient();
-  const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [weather, setWeather] = useState<CurrentWeatherData | null>(null);
   const [loadingWeather, setLoadingWeather] = useState(false);
   const [weatherError, setWeatherError] = useState<string | null>(null);
   // const [sendTransactionState, setSendTransactionState] = useState<any>(false);
@@ -31,17 +31,17 @@ export default function Home() {
       setWeatherError(null);
       // setSendTransactionState(false);
       
-      // Create a dummy transaction (sending 0 ETH to self)
-      if (address) {
-        const txHash = await fetchTxnHash();
-        // Wait until the transaction is confirmed before fetching weather
-        if (publicClient) {
-          await publicClient.waitForTransactionReceipt({ hash: txHash });
-        }
-        console.log('Transaction confirmed:', txHash);
-      }
-      
-      const data = await getWeather('New York');
+      // // Create a dummy transaction (sending 0 ETH to self)
+      // if (address) {
+      //   const txHash = await fetchTxnHash();
+      //   // Wait until the transaction is confirmed before fetching weather
+      //   if (publicClient) {
+      //     await publicClient.waitForTransactionReceipt({ hash: txHash });
+      //   }
+      //   console.log('Transaction confirmed:', txHash);
+      // }
+
+      const data = await getCurrentWeather('vn-hcmc');
       setWeather(data);
     } catch (error) {
       console.error('Error fetching weather:', error);
@@ -51,7 +51,11 @@ export default function Home() {
 
       // console.log('Transaction sent:', txn);
     }
-  };
+  }
+
+  const handleFetchForecastedWeather = async () => {
+    // Similar implementation to handleFetchWeather but for forecasted weather
+  }
 
   const handleSwitchAccount = async () => {
     if (!connector) return;
@@ -67,9 +71,7 @@ export default function Home() {
     }
   };
 
-  const handleFetchForecastedWeather = async () => {
-    // Similar implementation to handleFetchWeather but for forecasted weather
-  }
+  
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-24">
@@ -107,11 +109,10 @@ export default function Home() {
             {weather && (
               <div className="mt-2">
                 <h2 className="text-lg font-semibold">Weather Information:</h2>
-                <p>City: {weather.cities[0].city}</p>
-                <p>Country: {weather.cities[0].country}</p>
-                <p>Latitude: {weather.cities[0].lat}</p>
-                <p>Longitude: {weather.cities[0].long}</p>
-                <p>Timezone: {weather.cities[0].timezone}</p>
+                <p>City: {weather.city}</p>
+                <p>Country: {weather.country}</p>
+                <p>Temperature: {weather.current.temp_c} °C</p>
+                <p>Condition: {weather.current.condition}</p>
               </div>
             )}
           </div>
