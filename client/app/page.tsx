@@ -1,65 +1,122 @@
-import Image from "next/image";
+'use client';
+
+import { useState } from 'react';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useAccount, useSendTransaction, usePublicClient } from 'wagmi';
+import { parseEther } from 'viem';
+import { USDCBalance } from './components/USDCBalance';
+import { getWeather } from './services/user.service';
+import { WeatherData } from './types/weather';
 
 export default function Home() {
+  const { address, isConnected, connector } = useAccount();
+  const { sendTransactionAsync } = useSendTransaction();
+  const publicClient = usePublicClient();
+  const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [loadingWeather, setLoadingWeather] = useState(false);
+  const [weatherError, setWeatherError] = useState<string | null>(null);
+  // const [sendTransactionState, setSendTransactionState] = useState<any>(false);
+
+  const fetchTxnHash = async () => {
+    return await sendTransactionAsync({
+        to: address,
+        value: parseEther('0'),
+      });
+
+  }
+
+  const handleFetchWeather = async () => {
+    try {
+      setLoadingWeather(true);
+      setWeatherError(null);
+      // setSendTransactionState(false);
+      
+      // Create a dummy transaction (sending 0 ETH to self)
+      if (address) {
+        const txHash = await fetchTxnHash();
+        // Wait until the transaction is confirmed before fetching weather
+        if (publicClient) {
+          await publicClient.waitForTransactionReceipt({ hash: txHash });
+        }
+        console.log('Transaction confirmed:', txHash);
+      }
+      
+      const data = await getWeather('New York');
+      setWeather(data);
+    } catch (error) {
+      console.error('Error fetching weather:', error);
+      setWeatherError('Failed to fetch weather. Please try again.');
+    } finally {
+      setLoadingWeather(false);
+
+      // console.log('Transaction sent:', txn);
+    }
+  };
+
+  const handleSwitchAccount = async () => {
+    if (!connector) return;
+    try {
+      const provider = await connector.getProvider();
+      // @ts-ignore
+      await provider.request({
+        method: 'wallet_requestPermissions',
+        params: [{ eth_accounts: {} }],
+      });
+    } catch (error) {
+      console.error('Failed to switch account:', error);
+    }
+  };
+
+  const handleFetchForecastedWeather = async () => {
+    // Similar implementation to handleFetchWeather but for forecasted weather
+  }
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="flex min-h-screen flex-col items-center justify-center p-24">
+      <h1 className="mb-8 text-4xl font-bold">Wallet Connection</h1>
+
+      <ConnectButton />
+
+      {isConnected && (
+        <>
+          <div className="mt-8 p-4 border rounded-lg flex flex-col gap-2">
+            <p>Wallet is connected!</p>
+            <p className="font-mono">Address: {address}</p>
+            <button
+              onClick={handleSwitchAccount}
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-sm w-fit"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              Switch Account
+            </button>
+          </div>
+          <USDCBalance />
+
+          <div className="mt-4 p-4 border rounded-lg">
+            <button
+              onClick={handleFetchWeather}
+              disabled={loadingWeather || !address}
+              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors text-sm w-fit mb-2"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+              {loadingWeather ? 'Loading Weather...' : 'Get Weather'}
+            </button>
+
+            {weatherError && (
+              <div className="text-red-600 text-sm mb-2">{weatherError}</div>
+            )}
+
+            {weather && (
+              <div className="mt-2">
+                <h2 className="text-lg font-semibold">Weather Information:</h2>
+                <p>City: {weather.cities[0].city}</p>
+                <p>Country: {weather.cities[0].country}</p>
+                <p>Latitude: {weather.cities[0].lat}</p>
+                <p>Longitude: {weather.cities[0].long}</p>
+                <p>Timezone: {weather.cities[0].timezone}</p>
+              </div>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }
