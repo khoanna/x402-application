@@ -40,4 +40,4 @@ class WeatherController {
   }
 }
 
-export default new WeatherController();
+export const weatherController = new WeatherController();

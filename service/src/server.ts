@@ -11,13 +11,13 @@ import route from "./routes/index.ts";
 
 dotenv.config();
 
-const PORT = 5000;
+const PORT = 4000;
 const app = express();
-const RECEIVER_ADDRESS = privateKeyToAccount(process.env.RECEIVER_PRIVATE_KEY! as Hex).address;
+const RECEIVER_ADDRESS = privateKeyToAccount(process.env.RECEIVER_PRIVATE_KEY as Hex).address;
 const NETWORK = "eip155:11155111";
 
 const facilitatorClient = new HTTPFacilitatorClient({
-  url: "http://localhost:3636",
+  url: "http://localhost:9000",
 });
 const server = new x402ResourceServer(facilitatorClient);
 registerExactEvmScheme(server);

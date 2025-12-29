@@ -9,7 +9,7 @@ import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
 
-const PORT = "3636";
+const PORT = "9000";
 
 if (!process.env.RECEIVER_PRIVATE_KEY) {
   console.error("❌ RECEIVER_PRIVATE_KEY environment variable is required");

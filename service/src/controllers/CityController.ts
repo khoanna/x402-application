@@ -21,4 +21,4 @@ class CityController {
   }
 }
 
-export default new CityController();
+export const cityController = new CityController();
