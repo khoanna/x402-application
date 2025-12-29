@@ -9,6 +9,8 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@x402/evm": "^2.1.0",
+    "@x402/fetch": "^2.1.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
