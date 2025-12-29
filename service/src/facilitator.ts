@@ -11,8 +11,8 @@ dotenv.config();
 
 const PORT = "9000";
 
-if (!process.env.RECEIVER_PRIVATE_KEY) {
-  console.error("❌ RECEIVER_PRIVATE_KEY environment variable is required");
+if (!process.env.FACILITATOR_PRIVATE_KEY) {
+  console.error("❌ FACILITATOR_PRIVATE_KEY environment variable is required");
   process.exit(1);
 }
 
@@ -21,7 +21,7 @@ if (!process.env.INFURA_RPC_URL) {
   process.exit(1);
 }
 
-const evmAccount = privateKeyToAccount(process.env.RECEIVER_PRIVATE_KEY as `0x${string}`);
+const evmAccount = privateKeyToAccount(process.env.FACILITATOR_PRIVATE_KEY as `0x${string}`);
 console.info(`EVM Facilitator account: ${evmAccount.address}`);
 
 const viemClient = createWalletClient({
