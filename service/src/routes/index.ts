@@ -1,7 +1,11 @@
 import express from "express";
-import chatRouter from "./chat.ts";
+import cityRouter from "./city.ts";
+import weatherRouter from "./weather.ts";
 
 export default function route(app: express.Express) {
-  // [/chat]
-  app.use("/chat", chatRouter);
+    // [/city]
+    app.use("/city", cityRouter);
+
+    // [/weather]
+    app.use("/weather", weatherRouter);
 }
