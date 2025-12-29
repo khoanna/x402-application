@@ -1,0 +1,16 @@
+
+> client@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.1 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.2.62:3000
+- Environments: .env.local
+
+✓ Starting...
+✓ Ready in 770ms
+Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.
+ GET / 200 in 3.1s (compile: 2.8s, render: 288ms)
+ GET / 200 in 142ms (compile: 102ms, render: 39ms)
+ HEAD / 200 in 233ms (compile: 207ms, render: 26ms)
+ HEAD / 200 in 148ms (compile: 130ms, render: 18ms)

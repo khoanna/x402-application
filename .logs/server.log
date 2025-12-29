@@ -1,0 +1,55 @@
+[dotenv@17.2.3] injecting env (2) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+Example app listening on port 3001
+📋 Response Headers: {
+  'access-control-allow-origin': '*',
+  connection: 'keep-alive',
+  'content-length': '216',
+  'content-type': 'application/json; charset=utf-8',
+  date: 'Mon, 29 Dec 2025 15:36:51 GMT',
+  etag: 'W/"d8-FFIUKgfqtyRFxp+EVRicKhwTtzg"',
+  'keep-alive': 'timeout=5',
+  'payment-response': 'eyJzdWNjZXNzIjp0cnVlLCJ0cmFuc2FjdGlvbiI6IjB4ZTE0Y2M1OGZiOTFjZjNlMzU2NDRlZGM5ZTM5MmU1MWNiMzBlYjhhYWQxOWI0YjdlZGIzOWI3ZDIzZGE0OTYwNiIsIm5ldHdvcmsiOiJlaXAxNTU6MTExNTUxMTEiLCJwYXllciI6IjB4ODhjNDUzNzdDNzY1M2EzQjVlNDI2ODVjQjc0ODM1ZjY2OUQ5QTU0NiIsInJlcXVpcmVtZW50cyI6eyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTExNTUxMTEiLCJhbW91bnQiOiIxMDAwIiwiYXNzZXQiOiIweDFjN0Q0QjE5NkNiMEM3QjAxZDc0M0ZiYzYxMTZhOTAyMzc5QzcyMzgiLCJwYXlUbyI6IjB4ODhjNDUzNzdDNzY1M2EzQjVlNDI2ODVjQjc0ODM1ZjY2OUQ5QTU0NiIsIm1heFRpbWVvdXRTZWNvbmRzIjozMDAsImV4dHJhIjp7Im5hbWUiOiJVU0RDIiwidmVyc2lvbiI6IjIifX19',
+  'x-powered-by': 'Express'
+}
+💰 Payment settled: {
+  success: true,
+  transaction: '0xe14cc58fb91cf3e35644edc9e392e51cb30eb8aad19b4b7edb39b7d23da49606',
+  network: 'eip155:11155111',
+  payer: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+  requirements: {
+    scheme: 'exact',
+    network: 'eip155:11155111',
+    amount: '1000',
+    asset: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
+    payTo: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+    maxTimeoutSeconds: 300,
+    extra: { name: 'USDC', version: '2' }
+  }
+}
+📋 Response Headers: {
+  'access-control-allow-origin': '*',
+  connection: 'keep-alive',
+  'content-length': '354',
+  'content-type': 'application/json; charset=utf-8',
+  date: 'Mon, 29 Dec 2025 15:37:41 GMT',
+  etag: 'W/"162-LIpKJtfEPP//FQYwFfwqSfL5CLs"',
+  'keep-alive': 'timeout=5',
+  'payment-response': 'eyJzdWNjZXNzIjp0cnVlLCJ0cmFuc2FjdGlvbiI6IjB4NTlkNTE0NWNhYzliOTRmMDVmNzViMDIwMjNiYzhkNjNhZWUyOTI0N2M4ZmJlNmUyZTc3MjkwNTNmZDIzYjk5MCIsIm5ldHdvcmsiOiJlaXAxNTU6MTExNTUxMTEiLCJwYXllciI6IjB4ODhjNDUzNzdDNzY1M2EzQjVlNDI2ODVjQjc0ODM1ZjY2OUQ5QTU0NiIsInJlcXVpcmVtZW50cyI6eyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTExNTUxMTEiLCJhbW91bnQiOiI1MDAwIiwiYXNzZXQiOiIweDFjN0Q0QjE5NkNiMEM3QjAxZDc0M0ZiYzYxMTZhOTAyMzc5QzcyMzgiLCJwYXlUbyI6IjB4ODhjNDUzNzdDNzY1M2EzQjVlNDI2ODVjQjc0ODM1ZjY2OUQ5QTU0NiIsIm1heFRpbWVvdXRTZWNvbmRzIjozMDAsImV4dHJhIjp7Im5hbWUiOiJVU0RDIiwidmVyc2lvbiI6IjIifX19',
+  'x-powered-by': 'Express'
+}
+💰 Payment settled: {
+  success: true,
+  transaction: '0x59d5145cac9b94f05f75b02023bc8d63aee29247c8fbe6e2e7729053fd23b990',
+  network: 'eip155:11155111',
+  payer: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+  requirements: {
+    scheme: 'exact',
+    network: 'eip155:11155111',
+    amount: '5000',
+    asset: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
+    payTo: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+    maxTimeoutSeconds: 300,
+    extra: { name: 'USDC', version: '2' }
+  }
+}

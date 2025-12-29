@@ -1,0 +1,281 @@
+[dotenv@17.2.3] injecting env (2) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+EVM Facilitator account: 0x88c45377C7653a3B5e42685cB74835f669D9A546
+Facilitator listening on port 9000
+Before verify {
+  paymentPayload: {
+    x402Version: 2,
+    payload: {
+      authorization: [Object],
+      signature: '0x8779007572bea973cc52a0c43d9599aa5505baa38998f317faa16a449598e7fe31645dc5c3670c794837d70452527bdcf9e7e432e0e413356fe033f7cd0103e11b'
+    },
+    resource: {
+      url: 'http://localhost:4000/weather/current',
+      description: 'Get real-time weather snapshot for a specific city',
+      mimeType: 'application/json'
+    },
+    accepted: {
+      scheme: 'exact',
+      network: 'eip155:11155111',
+      amount: '1000',
+      asset: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
+      payTo: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+      maxTimeoutSeconds: 300,
+      extra: [Object]
+    }
+  },
+  requirements: {
+    scheme: 'exact',
+    network: 'eip155:11155111',
+    amount: '1000',
+    asset: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
+    payTo: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+    maxTimeoutSeconds: 300,
+    extra: { name: 'USDC', version: '2' }
+  }
+}
+After verify {
+  paymentPayload: {
+    x402Version: 2,
+    payload: {
+      authorization: [Object],
+      signature: '0x8779007572bea973cc52a0c43d9599aa5505baa38998f317faa16a449598e7fe31645dc5c3670c794837d70452527bdcf9e7e432e0e413356fe033f7cd0103e11b'
+    },
+    resource: {
+      url: 'http://localhost:4000/weather/current',
+      description: 'Get real-time weather snapshot for a specific city',
+      mimeType: 'application/json'
+    },
+    accepted: {
+      scheme: 'exact',
+      network: 'eip155:11155111',
+      amount: '1000',
+      asset: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
+      payTo: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+      maxTimeoutSeconds: 300,
+      extra: [Object]
+    }
+  },
+  requirements: {
+    scheme: 'exact',
+    network: 'eip155:11155111',
+    amount: '1000',
+    asset: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
+    payTo: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+    maxTimeoutSeconds: 300,
+    extra: { name: 'USDC', version: '2' }
+  },
+  result: {
+    isValid: true,
+    invalidReason: undefined,
+    payer: '0x88c45377C7653a3B5e42685cB74835f669D9A546'
+  }
+}
+Before settle {
+  paymentPayload: {
+    x402Version: 2,
+    payload: {
+      authorization: [Object],
+      signature: '0x8779007572bea973cc52a0c43d9599aa5505baa38998f317faa16a449598e7fe31645dc5c3670c794837d70452527bdcf9e7e432e0e413356fe033f7cd0103e11b'
+    },
+    resource: {
+      url: 'http://localhost:4000/weather/current',
+      description: 'Get real-time weather snapshot for a specific city',
+      mimeType: 'application/json'
+    },
+    accepted: {
+      scheme: 'exact',
+      network: 'eip155:11155111',
+      amount: '1000',
+      asset: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
+      payTo: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+      maxTimeoutSeconds: 300,
+      extra: [Object]
+    }
+  },
+  requirements: {
+    scheme: 'exact',
+    network: 'eip155:11155111',
+    amount: '1000',
+    asset: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
+    payTo: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+    maxTimeoutSeconds: 300,
+    extra: { name: 'USDC', version: '2' }
+  }
+}
+After settle {
+  paymentPayload: {
+    x402Version: 2,
+    payload: {
+      authorization: [Object],
+      signature: '0x8779007572bea973cc52a0c43d9599aa5505baa38998f317faa16a449598e7fe31645dc5c3670c794837d70452527bdcf9e7e432e0e413356fe033f7cd0103e11b'
+    },
+    resource: {
+      url: 'http://localhost:4000/weather/current',
+      description: 'Get real-time weather snapshot for a specific city',
+      mimeType: 'application/json'
+    },
+    accepted: {
+      scheme: 'exact',
+      network: 'eip155:11155111',
+      amount: '1000',
+      asset: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
+      payTo: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+      maxTimeoutSeconds: 300,
+      extra: [Object]
+    }
+  },
+  requirements: {
+    scheme: 'exact',
+    network: 'eip155:11155111',
+    amount: '1000',
+    asset: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
+    payTo: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+    maxTimeoutSeconds: 300,
+    extra: { name: 'USDC', version: '2' }
+  },
+  result: {
+    success: true,
+    transaction: '0xe14cc58fb91cf3e35644edc9e392e51cb30eb8aad19b4b7edb39b7d23da49606',
+    network: 'eip155:11155111',
+    payer: '0x88c45377C7653a3B5e42685cB74835f669D9A546'
+  }
+}
+Before verify {
+  paymentPayload: {
+    x402Version: 2,
+    payload: {
+      authorization: [Object],
+      signature: '0x08290075ceef03583c77f3643a7224cedc7d09996e387aae1f06583a62006f7b429ea938910c68b0cb37d0eae1383514a537661d1cfe873b372a736d93e99b7c1c'
+    },
+    resource: {
+      url: 'http://localhost:4000/weather/forecast',
+      description: 'Get 3-day predictive weather forecast for a specific city',
+      mimeType: 'application/json'
+    },
+    accepted: {
+      scheme: 'exact',
+      network: 'eip155:11155111',
+      amount: '5000',
+      asset: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
+      payTo: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+      maxTimeoutSeconds: 300,
+      extra: [Object]
+    }
+  },
+  requirements: {
+    scheme: 'exact',
+    network: 'eip155:11155111',
+    amount: '5000',
+    asset: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
+    payTo: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+    maxTimeoutSeconds: 300,
+    extra: { name: 'USDC', version: '2' }
+  }
+}
+After verify {
+  paymentPayload: {
+    x402Version: 2,
+    payload: {
+      authorization: [Object],
+      signature: '0x08290075ceef03583c77f3643a7224cedc7d09996e387aae1f06583a62006f7b429ea938910c68b0cb37d0eae1383514a537661d1cfe873b372a736d93e99b7c1c'
+    },
+    resource: {
+      url: 'http://localhost:4000/weather/forecast',
+      description: 'Get 3-day predictive weather forecast for a specific city',
+      mimeType: 'application/json'
+    },
+    accepted: {
+      scheme: 'exact',
+      network: 'eip155:11155111',
+      amount: '5000',
+      asset: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
+      payTo: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+      maxTimeoutSeconds: 300,
+      extra: [Object]
+    }
+  },
+  requirements: {
+    scheme: 'exact',
+    network: 'eip155:11155111',
+    amount: '5000',
+    asset: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
+    payTo: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+    maxTimeoutSeconds: 300,
+    extra: { name: 'USDC', version: '2' }
+  },
+  result: {
+    isValid: true,
+    invalidReason: undefined,
+    payer: '0x88c45377C7653a3B5e42685cB74835f669D9A546'
+  }
+}
+Before settle {
+  paymentPayload: {
+    x402Version: 2,
+    payload: {
+      authorization: [Object],
+      signature: '0x08290075ceef03583c77f3643a7224cedc7d09996e387aae1f06583a62006f7b429ea938910c68b0cb37d0eae1383514a537661d1cfe873b372a736d93e99b7c1c'
+    },
+    resource: {
+      url: 'http://localhost:4000/weather/forecast',
+      description: 'Get 3-day predictive weather forecast for a specific city',
+      mimeType: 'application/json'
+    },
+    accepted: {
+      scheme: 'exact',
+      network: 'eip155:11155111',
+      amount: '5000',
+      asset: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
+      payTo: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+      maxTimeoutSeconds: 300,
+      extra: [Object]
+    }
+  },
+  requirements: {
+    scheme: 'exact',
+    network: 'eip155:11155111',
+    amount: '5000',
+    asset: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
+    payTo: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+    maxTimeoutSeconds: 300,
+    extra: { name: 'USDC', version: '2' }
+  }
+}
+After settle {
+  paymentPayload: {
+    x402Version: 2,
+    payload: {
+      authorization: [Object],
+      signature: '0x08290075ceef03583c77f3643a7224cedc7d09996e387aae1f06583a62006f7b429ea938910c68b0cb37d0eae1383514a537661d1cfe873b372a736d93e99b7c1c'
+    },
+    resource: {
+      url: 'http://localhost:4000/weather/forecast',
+      description: 'Get 3-day predictive weather forecast for a specific city',
+      mimeType: 'application/json'
+    },
+    accepted: {
+      scheme: 'exact',
+      network: 'eip155:11155111',
+      amount: '5000',
+      asset: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
+      payTo: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+      maxTimeoutSeconds: 300,
+      extra: [Object]
+    }
+  },
+  requirements: {
+    scheme: 'exact',
+    network: 'eip155:11155111',
+    amount: '5000',
+    asset: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
+    payTo: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+    maxTimeoutSeconds: 300,
+    extra: { name: 'USDC', version: '2' }
+  },
+  result: {
+    success: true,
+    transaction: '0x59d5145cac9b94f05f75b02023bc8d63aee29247c8fbe6e2e7729053fd23b990',
+    network: 'eip155:11155111',
+    payer: '0x88c45377C7653a3B5e42685cB74835f669D9A546'
+  }
+}
