@@ -1,4 +1,4 @@
-[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
 [dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
 Example app listening on port 3001
 
@@ -9,8 +9,34 @@ Example app listening on port 3001
 🔄 Withdrawing 1000 USDC units from Smart Account to Backend EOA
    Smart Account: 0xE2752409FBb5DAec2BDeC7D26f293a02fc64E6Cc
    Backend EOA: 0x88c45377C7653a3B5e42685cB74835f669D9A546
-✅ Withdrawal tx hash: 0x9f5fa9d9d0ada6d713a2553b76b634e40284f13464c3a4cf2e10b76027381729
+✅ Withdrawal tx hash: 0x2f124af424596f783bf4253f757c9e706928ffd03903b67787913f18f8a333fa
 ✅ Withdrawal complete
 
 📤 Step 2: Paying facilitator via x402...
 💳 payFetch: Fetching http://localhost:4000/weather/current?id=vn-hcmc with payment from Backend EOA (0x88c45377C7653a3B5e42685cB74835f669D9A546)
+📋 Response Headers: {
+  'access-control-allow-origin': '*',
+  connection: 'keep-alive',
+  'content-length': '216',
+  'content-type': 'application/json; charset=utf-8',
+  date: 'Tue, 30 Dec 2025 09:14:27 GMT',
+  etag: 'W/"d8-FFIUKgfqtyRFxp+EVRicKhwTtzg"',
+  'keep-alive': 'timeout=5',
+  'payment-response': 'eyJzdWNjZXNzIjp0cnVlLCJ0cmFuc2FjdGlvbiI6IjB4NTgxNDMyNWE3NGE5ZDMwOTU3YmE3ZGMyMjE5NTdkZDBhODA4OGVlMTBiYWM5NTdiYmQ3MGM1OTgwNDBkNDRiOSIsIm5ldHdvcmsiOiJlaXAxNTU6ODQ1MzIiLCJwYXllciI6IjB4ODhjNDUzNzdDNzY1M2EzQjVlNDI2ODVjQjc0ODM1ZjY2OUQ5QTU0NiIsInJlcXVpcmVtZW50cyI6eyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6ODQ1MzIiLCJhbW91bnQiOiIxMDAwIiwiYXNzZXQiOiIweDAzNkNiRDUzODQyYzU0MjY2MzRlNzkyOTU0MWVDMjMxOGYzZENGN2UiLCJwYXlUbyI6IjB4MjIwMDQ2RTNkNjU2MTMzMEQ0RDhGMzFiMThDMzVFRkVmRDkzZURkMiIsIm1heFRpbWVvdXRTZWNvbmRzIjozMDAsImV4dHJhIjp7Im5hbWUiOiJVU0RDIiwidmVyc2lvbiI6IjIifX19',
+  'x-powered-by': 'Express'
+}
+💰 Payment settled: {
+  success: true,
+  transaction: '0x5814325a74a9d30957ba7dc221957dd0a8088ee10bac957bbd70c598040d44b9',
+  network: 'eip155:84532',
+  payer: '0x88c45377C7653a3B5e42685cB74835f669D9A546',
+  requirements: {
+    scheme: 'exact',
+    network: 'eip155:84532',
+    amount: '1000',
+    asset: '0x036CbD53842c5426634e7929541eC2318f3dCF7e',
+    payTo: '0x220046E3d6561330D4D8F31b18C35EFEfD93eDd2',
+    maxTimeoutSeconds: 300,
+    extra: { name: 'USDC', version: '2' }
+  }
+}

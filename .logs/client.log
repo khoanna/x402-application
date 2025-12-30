@@ -8,12 +8,10 @@
 - Environments: .env.local, .env
 
 ✓ Starting...
-✓ Ready in 580ms
+✓ Ready in 791ms
 Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.
- GET / 200 in 2.1s (compile: 1798ms, render: 261ms)
- HEAD / 200 in 148ms (compile: 124ms, render: 23ms)
- GET / 200 in 169ms (compile: 148ms, render: 21ms)
- HEAD / 200 in 179ms (compile: 161ms, render: 18ms)
- GET / 200 in 154ms (compile: 114ms, render: 40ms)
- HEAD / 200 in 116ms (compile: 101ms, render: 15ms)
+ GET / 200 in 1633ms (compile: 1047ms, render: 587ms)
+ HEAD / 200 in 1475ms (compile: 1397ms, render: 79ms)
+ GET / 200 in 160ms (compile: 114ms, render: 45ms)
+ HEAD / 200 in 236ms (compile: 211ms, render: 25ms)
 [?25h

@@ -1,4 +1,4 @@
-[dotenv@17.2.3] injecting env (2) from .env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+[dotenv@17.2.3] injecting env (2) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
 EVM Facilitator account: 0x220046E3d6561330D4D8F31b18C35EFEfD93eDd2
 Facilitator listening on port 9000
 Before verify {
@@ -6,7 +6,7 @@ Before verify {
     x402Version: 2,
     payload: {
       authorization: [Object],
-      signature: '0x0fbc2cfde231cb621ee390817970987360b015712d23baf51027071b72fd8293438b2fc26f24d2a3e963854298863229f11e25a8d3cc34d8c2faf04aa3842e0f1b'
+      signature: '0x6b28d4bb1b39be6e2dfabd13595ffd931da46a11df87dfa64c48b3555217695f62a4fb837459f10bc2b1ebab3ada99338d5db430885a6061eaef6543b787a4a01c'
     },
     resource: {
       url: 'http://localhost:4000/weather/current',
@@ -38,7 +38,7 @@ After verify {
     x402Version: 2,
     payload: {
       authorization: [Object],
-      signature: '0x0fbc2cfde231cb621ee390817970987360b015712d23baf51027071b72fd8293438b2fc26f24d2a3e963854298863229f11e25a8d3cc34d8c2faf04aa3842e0f1b'
+      signature: '0x6b28d4bb1b39be6e2dfabd13595ffd931da46a11df87dfa64c48b3555217695f62a4fb837459f10bc2b1ebab3ada99338d5db430885a6061eaef6543b787a4a01c'
     },
     resource: {
       url: 'http://localhost:4000/weather/current',
@@ -75,7 +75,7 @@ Before settle {
     x402Version: 2,
     payload: {
       authorization: [Object],
-      signature: '0x0fbc2cfde231cb621ee390817970987360b015712d23baf51027071b72fd8293438b2fc26f24d2a3e963854298863229f11e25a8d3cc34d8c2faf04aa3842e0f1b'
+      signature: '0x6b28d4bb1b39be6e2dfabd13595ffd931da46a11df87dfa64c48b3555217695f62a4fb837459f10bc2b1ebab3ada99338d5db430885a6061eaef6543b787a4a01c'
     },
     resource: {
       url: 'http://localhost:4000/weather/current',
@@ -102,103 +102,12 @@ Before settle {
     extra: { name: 'USDC', version: '2' }
   }
 }
-Failed to settle transaction: ContractFunctionExecutionError: The contract function "transferWithAuthorization" reverted.
-
-Contract Call:
-  address:   0x036CbD53842c5426634e7929541eC2318f3dCF7e
-  function:  transferWithAuthorization(address from, address to, uint256 value, uint256 validAfter, uint256 validBefore, bytes32 nonce, uint8 v, bytes32 r, bytes32 s)
-  args:                               (0x88c45377C7653a3B5e42685cB74835f669D9A546, 0x220046E3d6561330D4D8F31b18C35EFEfD93eDd2, 1000, 1767084957, 1767085857, 0xfc1f38e4058ff71065c37faafe6dd23c44e88a9e2818443e71eca6f4b8288dda, 27, 0x0fbc2cfde231cb621ee390817970987360b015712d23baf51027071b72fd8293, 0x438b2fc26f24d2a3e963854298863229f11e25a8d3cc34d8c2faf04aa3842e0f)
-  sender:    0x220046E3d6561330D4D8F31b18C35EFEfD93eDd2
-
-Docs: https://viem.sh/docs/contract/writeContract
-Version: viem@2.43.3
-    at getContractError (file:///Users/anderson/Workspace/x402-application/service/node_modules/viem/_esm/utils/errors/getContractError.js:33:12)
-    at writeContract.internal (file:///Users/anderson/Workspace/x402-application/service/node_modules/viem/_esm/actions/wallet/writeContract.js:82:19)
-    ... 3 lines matching cause stack trace ...
-    at async file:///Users/anderson/Workspace/x402-application/service/src/facilitator.ts:149:38 {
-  cause: ContractFunctionRevertedError: The contract function "transferWithAuthorization" reverted.
-  
-  Version: viem@2.43.3
-      at file:///Users/anderson/Workspace/x402-application/service/node_modules/viem/_esm/utils/errors/getContractError.js:22:20
-      at getContractError (file:///Users/anderson/Workspace/x402-application/service/node_modules/viem/_esm/utils/errors/getContractError.js:32:7)
-      at writeContract.internal (file:///Users/anderson/Workspace/x402-application/service/node_modules/viem/_esm/actions/wallet/writeContract.js:82:19)
-      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
-      at async ExactEvmScheme.settle (file:///Users/anderson/Workspace/x402-application/service/node_modules/@x402/evm/dist/esm/exact/facilitator/index.mjs:243:14)
-      at async x402Facilitator.settle (file:///Users/anderson/Workspace/x402-application/service/node_modules/@x402/core/dist/esm/facilitator/index.mjs:305:28)
-      at async file:///Users/anderson/Workspace/x402-application/service/src/facilitator.ts:149:38 {
-    details: undefined,
-    docsPath: undefined,
-    metaMessages: undefined,
-    shortMessage: 'The contract function "transferWithAuthorization" reverted.',
-    version: '2.43.3',
-    data: undefined,
-    raw: undefined,
-    reason: 'execution reverted',
-    signature: undefined
-  },
-  details: undefined,
-  docsPath: '/docs/contract/writeContract',
-  metaMessages: [
-    'Contract Call:',
-    '  address:   0x036CbD53842c5426634e7929541eC2318f3dCF7e\n' +
-      '  function:  transferWithAuthorization(address from, address to, uint256 value, uint256 validAfter, uint256 validBefore, bytes32 nonce, uint8 v, bytes32 r, bytes32 s)\n' +
-      '  args:                               (0x88c45377C7653a3B5e42685cB74835f669D9A546, 0x220046E3d6561330D4D8F31b18C35EFEfD93eDd2, 1000, 1767084957, 1767085857, 0xfc1f38e4058ff71065c37faafe6dd23c44e88a9e2818443e71eca6f4b8288dda, 27, 0x0fbc2cfde231cb621ee390817970987360b015712d23baf51027071b72fd8293, 0x438b2fc26f24d2a3e963854298863229f11e25a8d3cc34d8c2faf04aa3842e0f)\n' +
-      '  sender:    0x220046E3d6561330D4D8F31b18C35EFEfD93eDd2'
-  ],
-  shortMessage: 'The contract function "transferWithAuthorization" reverted.',
-  version: '2.43.3',
-  abi: [
-    {
-      inputs: [Array],
-      name: 'transferWithAuthorization',
-      outputs: [],
-      stateMutability: 'nonpayable',
-      type: 'function'
-    },
-    {
-      inputs: [Array],
-      name: 'transferWithAuthorization',
-      outputs: [],
-      stateMutability: 'nonpayable',
-      type: 'function'
-    },
-    {
-      inputs: [Array],
-      name: 'balanceOf',
-      outputs: [Array],
-      stateMutability: 'view',
-      type: 'function'
-    },
-    {
-      inputs: [],
-      name: 'version',
-      outputs: [Array],
-      stateMutability: 'view',
-      type: 'function'
-    }
-  ],
-  args: [
-    '0x88c45377C7653a3B5e42685cB74835f669D9A546',
-    '0x220046E3d6561330D4D8F31b18C35EFEfD93eDd2',
-    1000n,
-    1767084957n,
-    1767085857n,
-    '0xfc1f38e4058ff71065c37faafe6dd23c44e88a9e2818443e71eca6f4b8288dda',
-    27n,
-    '0x0fbc2cfde231cb621ee390817970987360b015712d23baf51027071b72fd8293',
-    '0x438b2fc26f24d2a3e963854298863229f11e25a8d3cc34d8c2faf04aa3842e0f'
-  ],
-  contractAddress: '0x036CbD53842c5426634e7929541eC2318f3dCF7e',
-  formattedArgs: undefined,
-  functionName: 'transferWithAuthorization',
-  sender: '0x220046E3d6561330D4D8F31b18C35EFEfD93eDd2'
-}
 After settle {
   paymentPayload: {
     x402Version: 2,
     payload: {
       authorization: [Object],
-      signature: '0x0fbc2cfde231cb621ee390817970987360b015712d23baf51027071b72fd8293438b2fc26f24d2a3e963854298863229f11e25a8d3cc34d8c2faf04aa3842e0f1b'
+      signature: '0x6b28d4bb1b39be6e2dfabd13595ffd931da46a11df87dfa64c48b3555217695f62a4fb837459f10bc2b1ebab3ada99338d5db430885a6061eaef6543b787a4a01c'
     },
     resource: {
       url: 'http://localhost:4000/weather/current',
@@ -225,9 +134,8 @@ After settle {
     extra: { name: 'USDC', version: '2' }
   },
   result: {
-    success: false,
-    errorReason: 'transaction_failed',
-    transaction: '',
+    success: true,
+    transaction: '0x5814325a74a9d30957ba7dc221957dd0a8088ee10bac957bbd70c598040d44b9',
     network: 'eip155:84532',
     payer: '0x88c45377C7653a3B5e42685cB74835f669D9A546'
   }
