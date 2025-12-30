@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(uuid())
+  walletAddress String    @unique @db.VarChar(42)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  sessions      Session[]
+
+  @@index([walletAddress])
+}
+
+model Session {
+  id                    String    @id @default(uuid())
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Smart account address that this session authorizes to spend from
+  smartAccountAddress   String    @db.VarChar(42)
+  
+  // Session public key (for verification) - indexed for quick lookup
+  sessionPublicKey      String?   @db.VarChar(42)
+  
+  // Session status: ACTIVE, REVOKED, EXPIRED
+  status                String    @default("ACTIVE")
+  
+  // Budget tracking
+  totalAmount           Float     @default(10.0)     // Total spending limit in USDC
+  remainingAmount       Float     @default(10.0)     // Remaining balance in USDC
+  
+  // Session timestamps
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  expiresAt             DateTime?                     // Session expiration time
+  
+  // Session configuration (sensitive data)
+  // Stores: {
+  //   privateKey: string,           // ZeroDev session key private key
+  //   publicKey: string,            // ZeroDev session key public key (address)
+  //   smartAccountAddress: string,  // Kernel smart account address
+  //   enableSignature: string,      // Typed data signature enabling this key
+  //   spendingLimit: string,        // Spending limit in USDC string format
+  //   spendingLimitAmount: bigint,  // Spending limit in smallest units
+  //   createdAt: number,            // Timestamp in milliseconds
+  //   expiresAt: number,            // Expiration timestamp in milliseconds
+  // }
+  sessionConfig         Json?
+  
+  // Relations
+  payments              Payment[]
+
+  @@index([userId])
+  @@index([sessionPublicKey])
+  @@index([smartAccountAddress])
+  @@index([status])
+  @@index([expiresAt])
+}
+
+model Payment {
+  id            String    @id @default(uuid())
+  sessionId     String
+  session       Session   @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  
+  // x402 payment settlement transaction hash from facilitator
+  txHash        String?   @unique @db.VarChar(66)
+  
+  // Amount paid in USDC
+  amount        Float
+  
+  // Payment status: PENDING, CONFIRMED, FAILED
+  status        String    @default("PENDING")
+  
+  // API endpoint that was called
+  endpoint      String?   // e.g., "/weather/current", "/weather/forecast"
+  
+  // Request/response tracking
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([sessionId])
+  @@index([status])
+  @@index([createdAt])
+}

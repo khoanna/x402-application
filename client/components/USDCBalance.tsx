@@ -15,7 +15,7 @@ const USDC_ADDRESSES: Record<number, `0x${string}`> = {
 
 export function USDCBalance() {
   const { address, chainId } = useAccount();
-  
+    
   const usdcAddress = chainId ? USDC_ADDRESSES[chainId] : undefined;
 
   const { data, isError, isLoading } = useBalance({

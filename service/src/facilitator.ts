@@ -4,7 +4,7 @@ import { toFacilitatorEvmSigner } from "@x402/evm";
 import { registerExactEvmScheme } from "@x402/evm/exact/facilitator";
 import { createWalletClient, http, publicActions } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { sepolia } from "viem/chains";
+import { baseSepolia } from "viem/chains";
 import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
@@ -26,7 +26,7 @@ console.info(`EVM Facilitator account: ${evmAccount.address}`);
 
 const viemClient = createWalletClient({
   account: evmAccount,
-  chain: sepolia,
+  chain: baseSepolia,
   transport: http(process.env.INFURA_RPC_URL as string),
 }).extend(publicActions);
 
@@ -73,12 +73,19 @@ const facilitator = new x402Facilitator()
   })
   .onSettleFailure(async (context) => {
     console.log("Settle failure", context);
+    if (context.error) {
+      console.error("Settle error details:", {
+        message: context.error.message,
+        cause: context.error.cause,
+        stack: context.error.stack,
+      });
+    }
   });
 
 // Register EVM using the new register helpers
 registerExactEvmScheme(facilitator, {
   signer: evmSigner,
-  networks: "eip155:11155111",
+  networks: "eip155:84532",
   deployERC4337WithEIP6492: true,
 });
 
@@ -144,6 +151,27 @@ app.post("/settle", async (req, res) => {
     res.json(response);
   } catch (error) {
     console.error("Settle error:", error);
+    
+    // Log detailed error information for debugging
+    if (error instanceof Error) {
+      console.error("Error name:", error.name);
+      console.error("Error message:", error.message);
+      if ('cause' in error && error.cause) {
+        console.error("Error cause:", error.cause);
+        if (error.cause instanceof Error) {
+          console.error("Cause message:", error.cause.message);
+          if ('reason' in error.cause) {
+            console.error("Revert reason:", error.cause.reason);
+          }
+        }
+      }
+      if ('shortMessage' in error) {
+        console.error("Short message:", error.shortMessage);
+      }
+      if ('metaMessages' in error && Array.isArray(error.metaMessages)) {
+        console.error("Meta messages:", error.metaMessages.join('\n'));
+      }
+    }
 
     // Check if this was an abort from hook
     if (error instanceof Error && error.message.includes("Settlement aborted:")) {

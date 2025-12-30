@@ -14,7 +14,7 @@ dotenv.config();
 const PORT = 4000;
 const app = express();
 const RECEIVER_ADDRESS = privateKeyToAccount(process.env.FACILITATOR_PRIVATE_KEY as Hex).address;
-const NETWORK = "eip155:11155111";
+const NETWORK = "eip155:84532";
 
 const facilitatorClient = new HTTPFacilitatorClient({
   url: "http://localhost:9000",

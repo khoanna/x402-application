@@ -13,13 +13,21 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@prisma/client": "^6.19.1",
     "@x402/evm": "^2.1.0",
     "@x402/express": "^2.1.0",
     "@x402/fetch": "^2.1.0",
+    "@zerodev/ecdsa-validator": "^5.4.9",
+    "@zerodev/permissions": "^5.6.3",
+    "@zerodev/sdk": "^5.5.7",
+    "@zerodev/webauthn-key": "^5.5.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "nodemon": "^3.1.11"
+    "nodemon": "^3.1.11",
+    "permissionless": "^0.3.2",
+    "prisma": "^6.19.1",
+    "wagmi": "^3.1.3"
   }
 }
